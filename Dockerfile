@@ -13,4 +13,4 @@ ADD configurations /logstash/configurations
 
 EXPOSE 5000
 
-CMD [ "/logstash/bin/logstash", "-f", "/logstash/configurations/*", "--allow-env"]
+ENTRYPOINT [ "/logstash/bin/logstash", "-f", "/logstash/configurations/*", "--allow-env"]
