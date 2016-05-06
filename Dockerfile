@@ -2,14 +2,18 @@ FROM alpine:3.3
 MAINTAINER Dave Finster <df@docketbook.io>
 
 RUN apk update && \
-	apk add openjdk8 bash && \
+	apk add openjdk7 bash curl && \
 	cd ~ && \
-	wget https://download.elastic.co/logstash/logstash/logstash-2.3.2.tar.gz && \
+	wget http://download.elastic.co/logstash/logstash/logstash-2.3.2.tar.gz && \
 	tar -zxvf logstash-2.3.2.tar.gz && \
 	rm logstash-2.3.2.tar.gz && \
-	mv logstash-2.3.2 /logstash
+	mv logstash-2.3.2 /logstash && \
+	curl -O -k http://curl.haxx.se/ca/cacert.pem && \
+	mv cacert.pem /logstash/cacert.pem
 
 ADD configurations /logstash/configurations
+
+ENV SSL_CERT_FILE=/logstash/cacert.pem
 
 EXPOSE 5000
 
