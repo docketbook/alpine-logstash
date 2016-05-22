@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM gliderlabs/alpine:3.3
 MAINTAINER Dave Finster <df@docketbook.io>
 
 RUN apk update && \
@@ -7,9 +7,7 @@ RUN apk update && \
 	wget http://download.elastic.co/logstash/logstash/logstash-2.3.2.tar.gz && \
 	tar -zxvf logstash-2.3.2.tar.gz && \
 	rm logstash-2.3.2.tar.gz && \
-	mv logstash-2.3.2 /logstash && \
-	curl -O -k http://curl.haxx.se/ca/cacert.pem && \
-	mv cacert.pem /logstash/cacert.pem
+	mv logstash-2.3.2 /logstash
 
 ADD configurations /logstash/configurations
 
