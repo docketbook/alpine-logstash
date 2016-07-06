@@ -10,6 +10,7 @@ RUN apk update && \
 	mv logstash-2.3.2 /logstash
 
 ADD configurations /logstash/configurations
+ADD patterns /logstash/patterns
 
 ENV SSL_CERT_FILE=/logstash/cacert.pem
 
